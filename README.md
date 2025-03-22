@@ -16,7 +16,7 @@
 
 ## Начало анализа
 Относительно строки [740 файла drivers/media/platform/nvidia/tegra-vde/h264.c](https://elixir.bootlin.com/linux/v6.1.129/source/drivers/media/platform/nvidia/tegra-vde/h264.c#L740) (функция `int tegra_vde_h264_setup_frame(...)`):
-```[C]
+```с
 ...
 } else {
     frame_num = b->refs[ref_id].frame_num;
@@ -33,7 +33,7 @@ at h264.c:793, where it is dereferenced at h264.c:734.
 есть проблема.
 
 Посмотрим на эту функцию целиком:
-```[C]
+```с
 static int tegra_vde_h264_setup_frame(struct tegra_ctx *ctx,
 				      struct tegra_vde_h264_decoder_ctx *h264,
 				      struct v4l2_h264_reflist_builder *b,
