@@ -217,7 +217,9 @@ static int tegra_vde_h264_setup_context(struct tegra_ctx *ctx,
 	struct device *dev = vde->dev;
 	int err;
 
-	memset(h264, 0, sizeof(*h264)); // Все поля структуры, на которую указывает h264 равны 0
+	memset(h264, 0, sizeof(*h264)); // Все поля структуры, на которую
+                                    // указывает h264 равны 0
+
 	memset(vde->frames, 0, sizeof(vde->frames));
 
 	tegra_vde_prepare_control_data(ctx, V4L2_CID_STATELESS_H264_DECODE_PARAMS);
