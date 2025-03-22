@@ -140,7 +140,7 @@ static int tegra_vde_h264_setup_frames(struct tegra_ctx *ctx,
 	else
 		tb->b_frame = false;
 
-    // Интересующий нас вызов, где аргумент b = NULL
+// Интересующий нас вызов, где аргумент b = NULL
 	err = tegra_vde_h264_setup_frame(ctx, h264, NULL, &dst->vb2_buf, 0,
 					 h264->dpb_frames_nb++);
 	if (err)
@@ -218,7 +218,7 @@ static int tegra_vde_h264_setup_context(struct tegra_ctx *ctx,
 	int err;
 
 	memset(h264, 0, sizeof(*h264)); // Все поля структуры, на которую
-                                    // указывает h264 равны 0
+					// указывает h264 равны 0
 
 	memset(vde->frames, 0, sizeof(vde->frames));
 
@@ -248,21 +248,21 @@ static int tegra_vde_h264_setup_context(struct tegra_ctx *ctx,
 	if (h->pps->flags & V4L2_H264_PPS_FLAG_BOTTOM_FIELD_PIC_ORDER_IN_FRAME_PRESENT)
 		h264->pic_order_present_flag = 1;
 
-	h264->level_idc				        = to_tegra_vde_h264_level_idc(h->sps->level_idc);
+	h264->level_idc				= to_tegra_vde_h264_level_idc(h->sps->level_idc);
 	h264->log2_max_pic_order_cnt_lsb	= h->sps->log2_max_pic_order_cnt_lsb_minus4 + 4;
-	h264->log2_max_frame_num		    = h->sps->log2_max_frame_num_minus4 + 4;
-	h264->pic_order_cnt_type		    = h->sps->pic_order_cnt_type;
-	h264->pic_width_in_mbs			    = h->sps->pic_width_in_mbs_minus1 + 1;
-	h264->pic_height_in_mbs			    = h->sps->pic_height_in_map_units_minus1 + 1;
+	h264->log2_max_frame_num		= h->sps->log2_max_frame_num_minus4 + 4;
+	h264->pic_order_cnt_type		= h->sps->pic_order_cnt_type;
+	h264->pic_width_in_mbs			= h->sps->pic_width_in_mbs_minus1 + 1;
+	h264->pic_height_in_mbs			= h->sps->pic_height_in_map_units_minus1 + 1;
 
 	h264->num_ref_idx_l0_active_minus1	= h->pps->num_ref_idx_l0_default_active_minus1;
 	h264->num_ref_idx_l1_active_minus1	= h->pps->num_ref_idx_l1_default_active_minus1;
 	h264->chroma_qp_index_offset		= h->pps->chroma_qp_index_offset & 0x1f;
-	h264->pic_init_qp			        = h->pps->pic_init_qp_minus26 + 26;
+	h264->pic_init_qp			= h->pps->pic_init_qp_minus26 + 26;
 
 	err = tegra_vde_h264_setup_frames(ctx, h264); // Интересующий нас вызов.
-                                                  // До сих пор:
-                                                  // h264->dpb_frames_nb = 0
+						      // До сих пор:
+                                                      // h264->dpb_frames_nb = 0
 	if (err)
 		return err;
 
